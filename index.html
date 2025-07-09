@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>พิเศษสำหรับกุ๊กกิ๊ก</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* ตั้งค่าพื้นหลังเป็นรูปภาพ */
+            background: url('518021687_772733541993493_8509928805122460247_n.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff; /* สีข้อความถ้ามี */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* เงาข้อความเพื่อให้อ่านง่าย */
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.4); /* พื้นหลังกึ่งโปร่งใสสำหรับเนื้อหา */
+            padding: 30px 50px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1.5s ease-out forwards; /* แอนิเมชันสำหรับคอนเทนเนอร์ */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .enter-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            background-color: #ff69b4; /* สีชมพูหัวใจ */
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .enter-button:hover {
+            background-color: #e64a9e; /* สีเข้มขึ้นเมื่อโฮเวอร์ */
+            transform: translateY(-3px); /* ยกขึ้นเล็กน้อย */
+        }
+
+        .enter-button:active {
+            transform: translateY(1px); /* กดแล้วจมลงเล็กน้อย */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>มีบางอย่างพิเศษสำหรับคุณ...</h1>
+        <a href="!DOCTYPE html.html" class="enter-button">กดตรงนี้</a>
+    </div>
+
+</body>
+</html>
