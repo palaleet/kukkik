@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I LOVE กุ๊กกิ๊ก</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* โทนสีพาสเทลไล่ระดับ */
+            background: linear-gradient(to right top, #ffafbd, #ffc3a0, #ffddd4, #c9ffbf, #a7e0ff);
+            animation: backgroundAnimation 15s ease infinite;
+            position: relative;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .love-message {
+            font-size: 5em;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            animation: bounceIn 2s ease-out forwards;
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* เอฟเฟกต์หัวใจลอย */
+        .heart {
+            position: absolute;
+            background-color: #ff69b4; /* สีชมพูหัวใจ */
+            width: 20px;
+            height: 20px;
+            transform: rotate(-45deg);
+            animation: floatHeart 10s infinite;
+            z-index: 5;
+            opacity: 0;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff69b4;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(-45deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(-20px) rotate(-45deg) scale(1);
+            }
+            100% {
+                transform: translateY(-1000px) rotate(-45deg) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* ส่วนของอิโมจิแมววิ่ง */
+        .cat-container {
+            position: absolute;
+            bottom: 10px; /* ระยะห่างจากด้านล่างจอ */
+            left: 0;
+            width: 100%;
+            height: 50px; /* ความสูงของพื้นที่แมววิ่ง */
+            overflow: hidden; /* ซ่อนแมวที่อยู่นอกพื้นที่ */
+            pointer-events: none; /* ไม่ให้รบกวนการคลิก */
+        }
+
+        .cat-emoji {
+            font-size: 2.5em; /* ขนาดอิโมจิแมว */
+            position: absolute;
+            bottom: 0;
+            white-space: nowrap; /* ป้องกันอิโมจิขึ้นบรรทัดใหม่ */
+            animation: catWalk 10s linear infinite; /* แอนิเมชันวิ่ง */
+        }
+
+        @keyframes catWalk {
+            0% { transform: translateX(-100px); opacity: 0; } /* เริ่มจากซ้ายนอกจอ */
+            10% { opacity: 1; } /* เริ่มปรากฏ */
+            90% { opacity: 1; } /* ยังคงปรากฏ */
+            100% { transform: translateX(calc(100vw + 100px)); opacity: 0; } /* วิ่งไปขวานอกจอและหายไป */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="love-message">I LOVE กุ๊กกิ๊ก</div>
+
+    <div class="cat-container">
+        <div class="cat-emoji" style="left: 10%; animation-delay: 0s;">🐈</div>
+        <div class="cat-emoji" style="left: 30%; animation-delay: 2s; font-size: 2.8em;">🐾</div>
+        <div class="cat-emoji" style="left: 55%; animation-delay: 5s;">🐱</div>
+        <div class="cat-emoji" style="left: 80%; animation-delay: 1s; font-size: 2.2em;">😹</div>
+        <div class="cat-emoji" style="left: 20%; animation-delay: 4s; font-size: 2.6em;">😻</div>
+        <div class="cat-emoji" style="left: 70%; animation-delay: 6s;">😽</div>
+    </div>
+
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="your_music_file.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // ฟังก์ชันสร้างหัวใจลอย
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            document.body.appendChild(heart);
+
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 5 + 5 + 's'; // สุ่มเวลาให้หัวใจลอยไม่พร้อมกัน
+            heart.style.animationDelay = Math.random() * 2 + 's'; // สุ่มดีเลย์
+
+            setTimeout(() => {
+                heart.remove();
+            }, parseFloat(heart.style.animationDuration) * 1000);
+        }
+
+        // สร้างหัวใจทุกๆ 300 มิลลิวินาที
+        setInterval(createHeart, 300);
+
+        // ควบคุมการเล่นเพลง
+        // **ข้อควรระวัง:** เบราว์เซอร์ส่วนใหญ่อาจบล็อกการเล่นเพลงอัตโนมัติหากไม่มีการโต้ตอบจากผู้ใช้
+        const bgMusic = document.getElementById('backgroundMusic');
+        bgMusic.volume = 0.5; // ปรับระดับเสียง (0.0 ถึง 1.0)
+
+        // ลองเล่นเพลงอัตโนมัติ
+        bgMusic.play().catch(error => {
+            console.error("Autoplay prevented:", error);
+            // คุณอาจแจ้งผู้ใช้ให้กดเล่นเพลงเอง เช่น แสดงปุ่ม "กดเพื่อเล่นเพลง"
+            // ตัวอย่าง: document.body.innerHTML += '<button onclick="document.getElementById(\'backgroundMusic\').play()">Play Music</button>';
+        });
+    </script>
+
+</body>
+</html>
